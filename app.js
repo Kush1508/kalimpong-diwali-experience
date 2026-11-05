@@ -681,6 +681,7 @@ function initDiyaWishingWall() {
   // Spotlight modal elements
   const modal = document.getElementById('blessing-spotlight-modal');
   const modalCloseBtn = document.getElementById('spotlight-close-btn');
+  const modalDismissBtn = document.getElementById('spotlight-dismiss-btn');
   const modalDiyaIcon = document.getElementById('spotlight-diya-icon');
   const modalBadge = document.getElementById('spotlight-badge');
   const modalName = document.getElementById('spotlight-name');
@@ -909,6 +910,7 @@ function initDiyaWishingWall() {
 
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
     // Chime softly on open
     playTempleBellNote(784);
@@ -919,6 +921,7 @@ function initDiyaWishingWall() {
     if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
     currentActiveWish = null;
   }
 
@@ -926,8 +929,17 @@ function initDiyaWishingWall() {
     modalCloseBtn.addEventListener('click', closeBlessingSpotlight);
   }
 
+  if (modalDismissBtn) {
+    modalDismissBtn.addEventListener('click', closeBlessingSpotlight);
+  }
+
   if (modal) {
     modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeBlessingSpotlight();
+      }
+    });
+    modal.addEventListener('touchend', (e) => {
       if (e.target === modal) {
         closeBlessingSpotlight();
       }

@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet (Cache-busted) -->
-  <link rel="stylesheet" href="styles.css?v=v12_colors">
+  <link rel="stylesheet" href="styles.css?v=v14_spotlight">
   
   <!-- Favicon / Diya SVG Icon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23ff9900' d='M16 2 C16 2, 21 9, 21 14 C21 17.5, 18.5 20, 16 20 C13.5 20, 11 17.5, 11 14 C11 9, 16 2, 16 2 Z'/%3E%3Cpath fill='%23ffe599' d='M16 7 C16 7, 19 11, 19 14 C19 16, 17.5 18, 16 18 C14.5 18, 13 16, 13 14 C13 11, 16 7, 16 7 Z'/%3E%3Cpath fill='%23ff6b35' d='M4 18 C4 25, 10 29, 16 29 C22 29, 28 25, 28 18 L4 18 Z'/%3E%3C/svg%3E">
@@ -262,18 +262,20 @@
           <button class="canvas-btn" data-firework-type="lantern">🏮 Lantern</button>
         </div>
 
-        <div class="toolbar-divider"></div>
+        <div class="toolbar-divider desktop-only"></div>
 
-        <div class="color-dot-picker">
-          <div class="color-dot active" data-color="gold" style="background: #ffb830;" title="Imperial Gold"></div>
-          <div class="color-dot" data-color="amber" style="background: #ff6b35;" title="Diya Amber"></div>
-          <div class="color-dot" data-color="purple" style="background: #b794f6;" title="Monastery Violet"></div>
-          <div class="color-dot" data-color="emerald" style="background: #10b981;" title="Himalayan Emerald"></div>
+        <div class="canvas-toolbar-actions">
+          <div class="color-dot-picker">
+            <div class="color-dot active" data-color="gold" style="background: #ffb830;" title="Imperial Gold"></div>
+            <div class="color-dot" data-color="amber" style="background: #ff6b35;" title="Diya Amber"></div>
+            <div class="color-dot" data-color="purple" style="background: #b794f6;" title="Monastery Violet"></div>
+            <div class="color-dot" data-color="emerald" style="background: #10b981;" title="Himalayan Emerald"></div>
+          </div>
+
+          <div class="toolbar-divider desktop-only"></div>
+
+          <button class="canvas-btn finale-btn" id="auto-barrage-btn">✨ Grand Finale</button>
         </div>
-
-        <div class="toolbar-divider"></div>
-
-        <button class="canvas-btn finale-btn" id="auto-barrage-btn">✨ Finale</button>
       </div>
 
     </div>
@@ -435,35 +437,40 @@
             <span>3D Diorama</span>
           </div>
 
-          <!-- Interactive Blessing Spotlight Modal (Reveals on Click) -->
-          <div class="blessing-spotlight-modal" id="blessing-spotlight-modal" aria-hidden="true">
-            <div class="spotlight-card">
-              <button class="spotlight-close-btn" id="spotlight-close-btn" title="Close blessing">&times;</button>
-              <div class="spotlight-icon-wrap" id="spotlight-icon-wrap">
-                <span class="spotlight-diya-icon" id="spotlight-diya-icon">🪔</span>
-                <div class="spotlight-glow-ring"></div>
-              </div>
-              <div class="spotlight-meta">
-                <span class="spotlight-badge" id="spotlight-badge">Clay Earthen Diya</span>
-                <h4 class="spotlight-name" id="spotlight-name">Maya from Darjeeling</h4>
-                <div class="spotlight-time" id="spotlight-time">Offering lit 10m ago</div>
-              </div>
-              <div class="spotlight-quote-box">
-                <span class="quote-mark">“</span>
-                <p class="spotlight-quote" id="spotlight-quote">May the sacred lights of Kalimpong bring peace to all beings across these hills.</p>
-                <span class="quote-mark right">”</span>
-              </div>
-              <div class="spotlight-actions">
-                <button class="btn-primary spotlight-ring-btn" id="spotlight-ring-btn">
-                  <span>🔔 Ring Temple Bell for Blessing</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
+    </div>
+
+    <!-- Interactive Blessing Spotlight Modal (Full-Screen Viewport Overlay) -->
+    <div class="blessing-spotlight-modal" id="blessing-spotlight-modal" aria-hidden="true">
+      <div class="spotlight-card" role="dialog" aria-modal="true" aria-labelledby="spotlight-name">
+        <button class="spotlight-close-btn" id="spotlight-close-btn" aria-label="Close blessing dialog" title="Close blessing">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="spotlight-icon-wrap" id="spotlight-icon-wrap">
+          <span class="spotlight-diya-icon" id="spotlight-diya-icon">🪔</span>
+          <div class="spotlight-glow-ring"></div>
+        </div>
+        <div class="spotlight-meta">
+          <span class="spotlight-badge" id="spotlight-badge">Clay Earthen Diya</span>
+          <h4 class="spotlight-name" id="spotlight-name">Maya from Darjeeling</h4>
+          <div class="spotlight-time" id="spotlight-time">Offering lit 10m ago</div>
+        </div>
+        <div class="spotlight-quote-box">
+          <span class="quote-mark">“</span>
+          <p class="spotlight-quote" id="spotlight-quote">May the sacred lights of Kalimpong bring peace to all beings across these hills.</p>
+          <span class="quote-mark right">”</span>
+        </div>
+        <div class="spotlight-actions">
+          <button type="button" class="btn-primary spotlight-ring-btn" id="spotlight-ring-btn">
+            <span>🔔 Ring Temple Bell for Blessing</span>
+          </button>
+          <button type="button" class="spotlight-dismiss-btn" id="spotlight-dismiss-btn">
+            <span>✕ Close & Return to Sanctuary</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -551,6 +558,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="app.js?v=v12_colors"></script>
+  <script src="app.js?v=v14_spotlight"></script>
 </body>
 </html>
