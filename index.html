@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diwali in Kalimpong • Himalayan Festival of Lights & Spatial UI</title>
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <meta name="description" content="Experience the magic of Diwali in Kalimpong through a high-end 4K scroll-scrubbed video experience, spatial holographic UI design, and interactive Himalayan celebrations.">
+  <meta name="theme-color" content="#05070e">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet (Cache-busted) -->
+  <link rel="stylesheet" href="styles.css?v=fresh9">
+  
+  <!-- Favicon / Diya SVG Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23ff9900' d='M16 2 C16 2, 21 9, 21 14 C21 17.5, 18.5 20, 16 20 C13.5 20, 11 17.5, 11 14 C11 9, 16 2, 16 2 Z'/%3E%3Cpath fill='%23ffe599' d='M16 7 C16 7, 19 11, 19 14 C19 16, 17.5 18, 16 18 C14.5 18, 13 16, 13 14 C13 11, 16 7, 16 7 Z'/%3E%3Cpath fill='%23ff6b35' d='M4 18 C4 25, 10 29, 16 29 C22 29, 28 25, 28 18 L4 18 Z'/%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- ===================================================================
+       MAIN HEADER / NAVIGATION
+       =================================================================== -->
+  <header class="main-nav" id="main-nav">
+    <a href="#" class="nav-brand">
+      <svg class="nav-logo-diya" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2 C16 2, 21 9, 21 14 C21 17.5, 18.5 20, 16 20 C13.5 20, 11 17.5, 11 14 C11 9, 16 2, 16 2 Z" fill="#ffb830"/>
+        <path d="M16 7 C16 7, 19 11, 19 14 C19 16, 17.5 18, 16 18 C14.5 18, 13 16, 13 14 C13 11, 16 7, 16 7 Z" fill="#fff7ed"/>
+        <path d="M4 18 C4 25, 10 29, 16 29 C22 29, 28 25, 28 18 L4 18 Z" fill="#ff6b35"/>
+      </svg>
+      <div class="nav-title-group">
+        <h1>KALIMPONG</h1>
+        <div class="nav-subtitle">Diwali • 4K Journey</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero-scroll-container" class="active">Hero Scrub</a></li>
+      <li><a href="#spatial-ui">Spatial UI</a></li>
+      <li><a href="#fireworks-canvas-section">Fireworks Canvas</a></li>
+      <li><a href="#culture">Tihar Traditions</a></li>
+      <li><a href="#wishing-wall">Wishing Wall</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- Himalayan Web Audio Soundscape Toggle -->
+      <button class="btn-icon" id="soundscape-toggle-btn" title="Toggle Himalayan Ambient Soundscape (Wind, Bells, Fireworks)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button class="btn-icon" id="fullscreen-btn" title="Toggle Fullscreen Mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+      </button>
+
+      <a href="#wishing-wall" class="btn-primary">
+        <span>Light a Diya</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       HERO SCROLL-SCRUB TRACK & PINNED VIEWPORT
+       Pure Frame-by-Frame Video Rendering as you Scroll
+       =================================================================== -->
+  <div class="hero-scroll-container" id="hero-scroll-container">
+    <div class="hero-sticky-viewport">
+      
+      <!-- Fullscreen Frame-by-Frame Video Canvas -->
+      <canvas id="hero-frame-canvas"></canvas>
+
+      <!-- Minimal Subtle Scroll Indicator Pill -->
+      <div class="hero-scroll-pill" id="hero-scroll-pill">
+        <span>Scroll to scrub video frame by frame</span>
+        <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       SECTION 2: SPATIAL UI SHOWCASE (DIRECT FROM VIDEO)
+       =================================================================== -->
+  <section id="spatial-ui">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        Holographic Design
+      </div>
+      <h2 class="section-title">The Kalimpong Spatial UI</h2>
+      <p class="section-desc">Reimagining Himalayan exploration through glassmorphism, 3D topographical dioramas, and festive interactive waypoints inspired by the video’s high-tech UI presentation.</p>
+    </div>
+
+    <div class="spatial-showcase-container">
+      
+      <!-- Interactive 3D Viewer Card with Hotspots -->
+      <div class="spatial-viewer-card" id="spatial-viewer-card">
+        <img src="assets/images/diorama_overview.jpg" alt="Kalimpong Spatial Diorama UI" class="spatial-viewer-img">
+
+        <!-- Hotspot 1: Durpin Monastery -->
+        <div class="hotspot-point" style="top: 38%; left: 33%;" data-target-pill="pill-monastery">
+          <div class="hotspot-tooltip">
+            <h4>Zang Dhok Palri</h4>
+            <p>Monastery ridge illuminated by 1,080 butter lamps for Diwali.</p>
+          </div>
+        </div>
+
+        <!-- Hotspot 2: Welcome to Kalimpong Sign -->
+        <div class="hotspot-point" style="top: 72%; left: 28%;" data-target-pill="pill-welcome">
+          <div class="hotspot-tooltip">
+            <h4>Town Portal</h4>
+            <p>Traditional stone entryway welcoming travelers with marigolds.</p>
+          </div>
+        </div>
+
+        <!-- Hotspot 3: Teesta River Basin -->
+        <div class="hotspot-point" style="top: 76%; left: 74%;" data-target-pill="pill-teesta">
+          <div class="hotspot-tooltip">
+            <h4>River of Diyas</h4>
+            <p>Glittering waters carrying floating offerings down the valley.</p>
+          </div>
+        </div>
+
+        <!-- Recreated Glass UI Bar from the video: 5 Live Working Google Search Buttons -->
+        <div class="spatial-glass-bar">
+          
+          <!-- 1. Explore Kalimpong -->
+          <a href="https://www.google.com/search?q=Kalimpong+tourism+places+to+visit+attractions" target="_blank" rel="noopener noreferrer" class="glass-bar-item btn-explore" title="Open Google Search: Explore Kalimpong">
+            <svg class="bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="bar-labels">
+              <span class="bar-title">Explore</span>
+              <span class="bar-title-sec">Kalimpong</span>
+            </div>
+          </a>
+
+          <!-- 2. Heritage Stays (Rollaria / 110m places) -->
+          <a href="https://www.google.com/search?q=Kalimpong+best+hotels+heritage+homestays+resorts" target="_blank" rel="noopener noreferrer" class="glass-bar-item btn-stays" title="Open Google Search: Kalimpong Heritage Stays & Resorts">
+            <svg class="bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            <div class="bar-labels">
+              <span class="bar-title">Hotels & Stays</span>
+              <span class="bar-sub">110+ places</span>
+            </div>
+          </a>
+
+          <!-- 3. Festive Cuisine (Redweanth / fern perze) -->
+          <a href="https://www.google.com/search?q=Kalimpong+best+restaurants+local+Tibetan+Nepali+food" target="_blank" rel="noopener noreferrer" class="glass-bar-item btn-food" title="Open Google Search: Kalimpong Food & Restaurants">
+            <svg class="bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            <div class="bar-labels">
+              <span class="bar-title">Restaurants</span>
+              <span class="bar-sub">Local dining</span>
+            </div>
+          </a>
+
+          <!-- 4. Plan Tour Trip (Amber Glowing CTA) -->
+          <a href="https://www.google.com/search?q=Plan+Kalimpong+tour+trip+holiday+itinerary" target="_blank" rel="noopener noreferrer" class="glass-bar-item btn-cta" title="Open Google Search: Plan Kalimpong Tour Trip">
+            <div class="bar-labels">
+              <span class="bar-title">Plan Tour Trip</span>
+            </div>
+            <svg class="bar-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+
+          <!-- 5. Stand More / Wishlist (Heart) -->
+          <a href="https://www.google.com/search?q=Kalimpong+top+attractions+viewpoints+monasteries" target="_blank" rel="noopener noreferrer" class="glass-bar-item btn-fav" title="Open Google Search: Kalimpong Sightseeing & Monasteries">
+            <svg class="bar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <div class="bar-labels">
+              <span class="bar-title">Top Sights</span>
+              <span class="bar-sub">Must visit</span>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Detail Pills Column -->
+      <div class="spatial-details">
+        
+        <div class="feature-pill-card selected" id="pill-monastery">
+          <h3>
+            <span class="text-gold">🏯</span> Durpin Dara & Monastery Ridge
+          </h3>
+          <p>Consecrated by the Dalai Lama in 1976, the Zang Dhok Palri Phodang houses rare Tibetan Kangyur scriptures. During Diwali night, its golden tiered pagodas are crowned with fireworks visible across Sikkim and Darjeeling.</p>
+        </div>
+
+        <div class="feature-pill-card" id="pill-welcome">
+          <h3>
+            <span class="text-gold">✨</span> The Verandas & Clay Diyas
+          </h3>
+          <p>Traditional wooden cottages and colonial verandas along Rishi Road are lined with rows of earthen lamps. Families gather in their courtyards singing Deusi-Bhailo carols while sharing freshly fried Sel Roti.</p>
+        </div>
+
+        <div class="feature-pill-card" id="pill-teesta">
+          <h3>
+            <span class="text-gold">🌊</span> Teesta Valley Reflections
+          </h3>
+          <p>As darkness envelops the gorge 1,000 meters below, the silver currents of the Teesta River catch the gleam of paper lanterns released from the ridges, mirroring the constellation of mountain town lights.</p>
+        </div>
+
+        <!-- Spatial Stats Grid -->
+        <div class="spatial-stats-grid">
+          <div class="stat-box">
+            <div class="stat-value">1,247m</div>
+            <div class="stat-label">Town Elevation</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">60 FPS</div>
+            <div class="stat-label">4K Cinematic</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">Tihar</div>
+            <div class="stat-label">Festive Spirit</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 3: INTERACTIVE FIREWORKS & SKY LANTERNS CANVAS
+       =================================================================== -->
+  <section id="fireworks-canvas-section">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Interactive Playground
+      </div>
+      <h2 class="section-title">Launch Himalayan Fireworks & Sky Lanterns</h2>
+      <p class="section-desc">Click or tap anywhere across the starlit mountain sky below to illuminate Kalimpong. Choose firework styles or release glowing paper lanterns (Fanush) drifting into the Himalayan breeze.</p>
+    </div>
+
+    <div class="fireworks-container">
+      
+      <!-- Kalimpong 3D Model Diorama Background Layer -->
+      <div class="fireworks-model-bg" id="fireworks-model-bg"></div>
+
+      <!-- Canvas element -->
+      <canvas id="fireworks-interactive-canvas"></canvas>
+
+      <!-- Floating Toolbar -->
+      <div class="canvas-toolbar">
+        <div class="canvas-toolbar-group">
+          <button class="canvas-btn active" data-firework-type="willow">Golden Willow</button>
+          <button class="canvas-btn" data-firework-type="peony">Himalayan Peony</button>
+          <button class="canvas-btn" data-firework-type="lantern">Sky Lantern (Fanush)</button>
+        </div>
+
+        <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.2);"></div>
+
+        <div class="color-dot-picker">
+          <div class="color-dot active" data-color="gold" style="background: #ffb830;" title="Imperial Gold"></div>
+          <div class="color-dot" data-color="amber" style="background: #ff6b35;" title="Diya Amber"></div>
+          <div class="color-dot" data-color="purple" style="background: #b794f6;" title="Monastery Violet"></div>
+          <div class="color-dot" data-color="emerald" style="background: #10b981;" title="Himalayan Emerald"></div>
+        </div>
+
+        <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.2);"></div>
+
+        <button class="canvas-btn" id="auto-barrage-btn">✨ Grand Finale</button>
+      </div>
+
+      <div class="canvas-hint-pill">
+        Tap or click anywhere to launch fireworks over the 3D Kalimpong model
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- ===================================================================
+       SECTION 5: CULTURAL TRADITIONS (TIHAR & DIWALI)
+       =================================================================== -->
+  <section id="culture">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        Himalayan Heritage
+      </div>
+      <h2 class="section-title">The Soul of Diwali in the Hills</h2>
+      <p class="section-desc">In Kalimpong and the Darjeeling hills, Diwali blends seamlessly into the 5-day festival of Tihar — an ancient celebration honoring animals, nature, family bonds, and the goddess Laxmi.</p>
+    </div>
+
+    <div class="traditions-timeline">
+      
+      <div class="tradition-box">
+        <div class="tradition-icon-circle">🐕</div>
+        <div class="tradition-day">Day 2 • Kukur Tihar</div>
+        <h3>Honoring Faithful Friends</h3>
+        <p>Mountain dogs are draped with fragrant marigold garlands (Sayapatri) and blessed with vermilion red tilaks, honoring their loyal companionship and spiritual guardianship in the hills.</p>
+      </div>
+
+      <div class="tradition-box">
+        <div class="tradition-icon-circle">🪔</div>
+        <div class="tradition-day">Day 3 • Laxmi Puja</div>
+        <h3>The Night of 10,000 Diyas</h3>
+        <p>Every wooden lintel, flower pot, and mountain courtyard is adorned with earthen oil lamps. Footprints made with rice paste guide goddess Laxmi into homes filled with love and warmth.</p>
+      </div>
+
+      <div class="tradition-box">
+        <div class="tradition-icon-circle">🎶</div>
+        <div class="tradition-day">Day 4 • Deusi & Bhailo</div>
+        <h3>Acoustic Folk Carols</h3>
+        <p>Youth troupes wander through pine mist with acoustic guitars and Madal drums, serenading each household with melodic folk stories and festive blessings under the night stars.</p>
+      </div>
+
+      <div class="tradition-box">
+        <div class="tradition-icon-circle">🍘</div>
+        <div class="tradition-day">Day 5 • Bhai Tika & Feast</div>
+        <h3>Sel Roti & Mountain Treats</h3>
+        <p>Sisters bless brothers with multi-colored 7-shade rainbow tikas. Families feast on golden ringed crispy Sel Roti, spiced potatoes (Alu Dum), and steaming Darjeeling tea.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 6: VIRTUAL DIYA WISHING WALL
+       =================================================================== -->
+  <section id="wishing-wall">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Community Shrine
+      </div>
+      <h2 class="section-title">Light a Diya for Kalimpong</h2>
+      <p class="section-desc">Join our virtual shrine. Light an earthen lamp, dedicate a blessing for loved ones or travelers, and watch your diya float into the Himalayan night sky.</p>
+    </div>
+
+    <div class="wishing-wall-wrapper">
+      
+      <!-- Form Column -->
+      <div class="wishing-form-column">
+        <div class="form-card-header">
+          <h3 class="font-serif">Offer Your Mountain Light</h3>
+          <p class="form-card-sub">Dedicate a Diya or Sky Lantern that will illuminate the sanctuary for all visitors.</p>
+        </div>
+        <form id="diya-wish-form">
+          
+          <div class="form-group">
+            <label for="wish-name-input">Your Name or Mountain Calling</label>
+            <input type="text" id="wish-name-input" class="form-input" placeholder="e.g. Maya from Darjeeling" required>
+          </div>
+
+          <div class="form-group">
+            <label>Select Your Diya Style</label>
+            <div class="diya-style-selector">
+              <div class="diya-option-card active" data-diya-type="Clay Diya">
+                <div class="diya-option-icon">🪔</div>
+                <div class="diya-option-label">Clay Earthen</div>
+              </div>
+              <div class="diya-option-card" data-diya-type="Sky Lantern">
+                <div class="diya-option-icon">🏮</div>
+                <div class="diya-option-label">Sky Lantern</div>
+              </div>
+              <div class="diya-option-card" data-diya-type="Lotus Lantern">
+                <div class="diya-option-icon">🪷</div>
+                <div class="diya-option-label">River Lotus</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="wish-message-input">Your Festive Blessing</label>
+            <textarea id="wish-message-input" rows="3" class="form-textarea" placeholder="May these lights bring peace, joy, and good health to all..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" id="wish-submit-btn" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+            <span id="wish-btn-label">Light My Earthen Diya</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Living Interactive Physical Sanctuary Stage -->
+      <div class="sanctuary-container">
+        <div class="sanctuary-header">
+          <div>
+            <h3 class="font-serif">The Ridge & Sky Sanctuary</h3>
+            <p class="sanctuary-sub">Click any floating lantern, clay diya, or river lotus to reveal who lit it</p>
+          </div>
+          <div class="sanctuary-controls">
+            <div class="sanctuary-filters">
+              <button class="sanctuary-filter-btn active" data-filter="all">All</button>
+              <button class="sanctuary-filter-btn" data-filter="Clay Diya">🪔 Diyas</button>
+              <button class="sanctuary-filter-btn" data-filter="Sky Lantern">🏮 Lanterns</button>
+              <button class="sanctuary-filter-btn" data-filter="Lotus Lantern">🪷 Lotus</button>
+            </div>
+            <span class="diya-count-badge" id="diya-count-badge">108 Lights Glowing</span>
+          </div>
+        </div>
+
+        <!-- The Visual Interactive Stage with Realistic 3D Model of Kalimpong -->
+        <div class="sanctuary-stage" id="sanctuary-stage">
+          <!-- 3D Diorama Viewport with Mouse Parallax Depth -->
+          <div class="sanctuary-3d-viewport" id="sanctuary-3d-viewport">
+            
+            <!-- 3D Kalimpong Topographical Model Base -->
+            <div class="sanctuary-3d-model-wrap">
+              <img src="assets/images/kalimpong_3d_model_bg.jpg" alt="3D Model of Kalimpong" class="sanctuary-3d-model-img">
+              <div class="sanctuary-3d-model-lighting"></div>
+            </div>
+
+            <!-- Natural Geographic 3D Layers (No arbitrary line dividers) -->
+            <!-- 1. Sky Layer: Floating Sky Lanterns (Fanush) above the mountain peaks -->
+            <div class="sanctuary-geo-layer sky-lanterns-layer" id="sanctuary-sky-layer"></div>
+
+            <!-- 2. Mountain Ridge & Monastery Layer: Clay Diyas burning on Durpin ridge & town terraces -->
+            <div class="sanctuary-geo-layer mountain-diyas-layer" id="sanctuary-diyas-layer"></div>
+
+            <!-- 3. Sacred River Basin Layer: Lotus Diyas floating on the Teesta valley waters -->
+            <div class="sanctuary-geo-layer river-lotus-layer" id="sanctuary-river-layer"></div>
+
+            <!-- Ambient Atmospheric Floating Embers & Stardust -->
+            <div class="sanctuary-floating-embers"></div>
+          </div>
+
+          <!-- 3D Diorama Interactive Badge -->
+          <div class="sanctuary-3d-hint">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <span>Kalimpong 3D Diorama • Move mouse to tilt in 3D</span>
+          </div>
+
+          <!-- Interactive Blessing Spotlight Modal (Reveals on Click) -->
+          <div class="blessing-spotlight-modal" id="blessing-spotlight-modal" aria-hidden="true">
+            <div class="spotlight-card">
+              <button class="spotlight-close-btn" id="spotlight-close-btn" title="Close blessing">&times;</button>
+              <div class="spotlight-icon-wrap" id="spotlight-icon-wrap">
+                <span class="spotlight-diya-icon" id="spotlight-diya-icon">🪔</span>
+                <div class="spotlight-glow-ring"></div>
+              </div>
+              <div class="spotlight-meta">
+                <span class="spotlight-badge" id="spotlight-badge">Clay Earthen Diya</span>
+                <h4 class="spotlight-name" id="spotlight-name">Maya from Darjeeling</h4>
+                <div class="spotlight-time" id="spotlight-time">Offering lit 10m ago</div>
+              </div>
+              <div class="spotlight-quote-box">
+                <span class="quote-mark">“</span>
+                <p class="spotlight-quote" id="spotlight-quote">May the sacred lights of Kalimpong bring peace to all beings across these hills.</p>
+                <span class="quote-mark right">”</span>
+              </div>
+              <div class="spotlight-actions">
+                <button class="btn-primary spotlight-ring-btn" id="spotlight-ring-btn">
+                  <span>🔔 Ring Temple Bell for Blessing</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SECTION 7: AMBIENT SOUND GENERATOR (WEB AUDIO SYNTHESIZER)
+       =================================================================== -->
+  <section id="ambient-suite">
+    <div class="section-header">
+      <div class="section-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        Himalayan Soundscape
+      </div>
+      <h2 class="section-title">Synthesized Mountain Atmosphere</h2>
+      <p class="section-desc">Experience the audio ambiance of an autumn Himalayan evening generated in real-time with Web Audio API. Blend mountain wind, night pine crickets, and sacred singing bowls.</p>
+    </div>
+
+    <div class="soundscape-card">
+      <div class="soundscape-header">
+        <div>
+          <h3 class="font-serif">Live Soundscape Console</h3>
+          <p class="text-muted" style="font-size: 0.9rem;">Zero audio file downloads — 100% procedurally synthesized in your browser.</p>
+        </div>
+        <button class="btn-primary" id="play-bell-btn">
+          <span>🔔 Strike Singing Bowl</span>
+        </button>
+      </div>
+
+      <div class="soundscape-channels">
+        
+        <!-- Channel 1: Mountain Wind -->
+        <div class="channel-box">
+          <div class="channel-top">
+            <span class="channel-name">
+              <span>🍃</span> Mountain Breeze
+            </span>
+          </div>
+          <input type="range" min="0" max="100" value="70" class="channel-slider" id="wind-vol-slider">
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-dim);">
+            <span>Calm</span>
+            <span>Ridge Gusts</span>
+          </div>
+        </div>
+
+        <!-- Channel 2: Pine Crickets -->
+        <div class="channel-box">
+          <div class="channel-top">
+            <span class="channel-name">
+              <span>🦗</span> Valley Crickets
+            </span>
+          </div>
+          <input type="range" min="0" max="100" value="50" class="channel-slider" id="crickets-vol-slider">
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-dim);">
+            <span>Silent</span>
+            <span>Meadow</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FOOTER
+       =================================================================== -->
+  <footer>
+    <div class="footer-inner">
+      <svg class="nav-logo-diya" viewBox="0 0 32 32" fill="none" style="width:40px; height:40px;">
+        <path d="M16 2 C16 2, 21 9, 21 14 C21 17.5, 18.5 20, 16 20 C13.5 20, 11 17.5, 11 14 C11 9, 16 2, 16 2 Z" fill="#ffb830"/>
+        <path d="M16 7 C16 7, 19 11, 19 14 C19 16, 17.5 18, 16 18 C14.5 18, 13 16, 13 14 C13 11, 16 7, 16 7 Z" fill="#fff7ed"/>
+        <path d="M4 18 C4 25, 10 29, 16 29 C22 29, 28 25, 28 18 L4 18 Z" fill="#ff6b35"/>
+      </svg>
+      
+      <p class="footer-quote">
+        “As the mist descends over Kanchenjunga, every diya lit on Kalimpong’s ridges turns the mountains into a living constellation.”
+      </p>
+
+      <div class="footer-copy">
+        Crafted with 4K 60FPS Video Scrubbing • Kalimpong, West Bengal • Subha Deepavali & Happy Tihar
+      </div>
+      
+      <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.5rem;">
+        Shortcuts: <kbd style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">Space</kbd> Play/Pause &bull; <kbd style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">M</kbd> Mute Soundscape &bull; Scroll to Scrub Hero
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js?v=fresh9"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "kalimpong-diwali-experience",
+  "version": "1.0.0",
+  "description": "An immersive scroll-scrubbed 4K video showcase of Diwali in Kalimpong featuring spatial UI aesthetics, Himalayan cultural heritage, and interactive festive elements.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python server.py 8000",
+    "serve": "python server.py 8000"
+  },
+  "keywords": ["diwali", "kalimpong", "scroll-video", "ui-design", "himalayas", "interactive"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
