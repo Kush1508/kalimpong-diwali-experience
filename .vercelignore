@@ -1,0 +1,5 @@
+videos/
+server.py
+*.py
+__pycache__/
+.git/
