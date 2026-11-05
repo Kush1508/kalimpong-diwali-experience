@@ -525,14 +525,24 @@ function initInteractiveFireworks() {
     launchFirework(x, y);
   });
 
+  // Instant touch response on smartphones
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+      launchFirework(x, y);
+    }
+  }, { passive: true });
+
   // Interactive 3D Parallax Tilt for the Kalimpong 3D Model background
   const container = canvas.parentElement;
   const modelBg = document.getElementById('fireworks-model-bg');
   if (container && modelBg) {
-    container.addEventListener('mousemove', (e) => {
+    const applyParallax = (clientX, clientY) => {
       const rect = container.getBoundingClientRect();
-      const xPercent = (e.clientX - rect.left) / rect.width - 0.5;
-      const yPercent = (e.clientY - rect.top) / rect.height - 0.5;
+      const xPercent = (clientX - rect.left) / rect.width - 0.5;
+      const yPercent = (clientY - rect.top) / rect.height - 0.5;
       
       const tiltX = -yPercent * 7;
       const tiltY = xPercent * 9;
@@ -540,11 +550,21 @@ function initInteractiveFireworks() {
       const shiftY = yPercent * -8;
       
       modelBg.style.transform = `scale(1.05) translate3d(${shiftX}px, ${shiftY}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    };
+
+    container.addEventListener('mousemove', (e) => {
+      applyParallax(e.clientX, e.clientY);
     });
 
     container.addEventListener('mouseleave', () => {
       modelBg.style.transform = 'scale(1.03) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)';
     });
+
+    container.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        applyParallax(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
   }
 
   // Animation Loop

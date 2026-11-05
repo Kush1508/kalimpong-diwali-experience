@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet (Cache-busted) -->
-  <link rel="stylesheet" href="styles.css?v=mobile_v10">
+  <link rel="stylesheet" href="styles.css?v=clean_v11">
   
   <!-- Favicon / Diya SVG Icon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23ff9900' d='M16 2 C16 2, 21 9, 21 14 C21 17.5, 18.5 20, 16 20 C13.5 20, 11 17.5, 11 14 C11 9, 16 2, 16 2 Z'/%3E%3Cpath fill='%23ffe599' d='M16 7 C16 7, 19 11, 19 14 C19 16, 17.5 18, 16 18 C14.5 18, 13 16, 13 14 C13 11, 16 7, 16 7 Z'/%3E%3Cpath fill='%23ff6b35' d='M4 18 C4 25, 10 29, 16 29 C22 29, 28 25, 28 18 L4 18 Z'/%3E%3C/svg%3E">
@@ -240,10 +240,10 @@
     <div class="section-header">
       <div class="section-tag">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        Interactive Playground
+        Night Sky
       </div>
-      <h2 class="section-title">Launch Himalayan Fireworks & Sky Lanterns</h2>
-      <p class="section-desc">Click or tap anywhere across the starlit mountain sky below to illuminate Kalimpong. Choose firework styles or release glowing paper lanterns (Fanush) drifting into the Himalayan breeze.</p>
+      <h2 class="section-title">Himalayan Fireworks & Lanterns</h2>
+      <p class="section-desc">Tap the night sky to launch fireworks or release glowing lanterns over the mountain ridges.</p>
     </div>
 
     <div class="fireworks-container">
@@ -254,15 +254,15 @@
       <!-- Canvas element -->
       <canvas id="fireworks-interactive-canvas"></canvas>
 
-      <!-- Floating Toolbar -->
+      <!-- Sleek Bottom Dock Toolbar -->
       <div class="canvas-toolbar">
         <div class="canvas-toolbar-group">
-          <button class="canvas-btn active" data-firework-type="willow">Golden Willow</button>
-          <button class="canvas-btn" data-firework-type="peony">Himalayan Peony</button>
-          <button class="canvas-btn" data-firework-type="lantern">Sky Lantern (Fanush)</button>
+          <button class="canvas-btn active" data-firework-type="willow">🎆 Willow</button>
+          <button class="canvas-btn" data-firework-type="peony">🌸 Peony</button>
+          <button class="canvas-btn" data-firework-type="lantern">🏮 Lantern</button>
         </div>
 
-        <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.2);"></div>
+        <div class="toolbar-divider"></div>
 
         <div class="color-dot-picker">
           <div class="color-dot active" data-color="gold" style="background: #ffb830;" title="Imperial Gold"></div>
@@ -271,13 +271,9 @@
           <div class="color-dot" data-color="emerald" style="background: #10b981;" title="Himalayan Emerald"></div>
         </div>
 
-        <div style="width: 1px; height: 18px; background: rgba(255,255,255,0.2);"></div>
+        <div class="toolbar-divider"></div>
 
-        <button class="canvas-btn" id="auto-barrage-btn">✨ Grand Finale</button>
-      </div>
-
-      <div class="canvas-hint-pill">
-        Tap or click anywhere to launch fireworks over the 3D Kalimpong model
+        <button class="canvas-btn finale-btn" id="auto-barrage-btn">✨ Finale</button>
       </div>
 
     </div>
@@ -433,10 +429,10 @@
             <div class="sanctuary-floating-embers"></div>
           </div>
 
-          <!-- 3D Diorama Interactive Badge -->
+          <!-- 3D Diorama Badge -->
           <div class="sanctuary-3d-hint">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-            <span>Kalimpong 3D Diorama • Move mouse to tilt in 3D</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <span>3D Diorama</span>
           </div>
 
           <!-- Interactive Blessing Spotlight Modal (Reveals on Click) -->
@@ -555,6 +551,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="app.js?v=mobile_v10"></script>
+  <script src="app.js?v=clean_v11"></script>
 </body>
 </html>
