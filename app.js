@@ -632,18 +632,33 @@ function initDiyaWishingWall() {
   let diyaCount = 108; // Starting auspicious count
   let currentActiveWish = null;
 
-  // 3D Mouse Parallax Tilt Effect on the 3D Kalimpong Model
+  // 3D Mouse & Touch Parallax Tilt Effect on the 3D Kalimpong Model
   if (stage && viewport3D) {
-    stage.addEventListener('mousemove', (e) => {
+    const applyTilt = (clientX, clientY) => {
       const rect = stage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const x = (clientX - rect.left) / rect.width - 0.5;
+      const y = (clientY - rect.top) / rect.height - 0.5;
       const rotX = -y * 12; // tilt max 12 deg
       const rotY = x * 16;  // rotate max 16 deg
       viewport3D.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+    };
+
+    stage.addEventListener('mousemove', (e) => {
+      applyTilt(e.clientX, e.clientY);
     });
 
     stage.addEventListener('mouseleave', () => {
+      viewport3D.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+
+    // Touch support for mobile phones
+    stage.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        applyTilt(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    stage.addEventListener('touchend', () => {
       viewport3D.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     });
   }
