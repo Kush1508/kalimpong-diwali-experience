@@ -768,6 +768,44 @@ section {
 /* ===================================================================
    SECTION 3: INTERACTIVE FIREWORKS & SKY LANTERNS CANVAS
    =================================================================== */
+#fireworks-canvas-section {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5rem 1.5rem;
+  overflow: hidden;
+}
+
+#fireworks-canvas-section .section-header {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#fireworks-canvas-section .section-title {
+  font-size: clamp(1.65rem, 4.5vw, 2.6rem);
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  padding: 0;
+}
+
+#fireworks-canvas-section .section-desc {
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
 .fireworks-container {
   position: relative;
   width: 100%;
@@ -1881,20 +1919,73 @@ footer {
   .section-header {
     margin-bottom: 1.8rem;
   }
-  .fireworks-container {
+  #fireworks-canvas-section {
+    padding: 3.5rem 0.85rem 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+  }
+  #fireworks-canvas-section .section-header {
+    padding: 0 0.5rem;
+    margin-bottom: 1.4rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  #fireworks-canvas-section .section-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.45rem;
+  }
+  #fireworks-canvas-section .section-title {
+    font-size: clamp(1.4rem, 6.2vw, 1.85rem);
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+    padding: 0 0.25rem;
+    box-sizing: border-box;
+    word-break: normal;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  #fireworks-canvas-section .section-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    padding: 0 0.4rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  #fireworks-canvas-section .fireworks-container {
     height: clamp(480px, 68vh, 580px);
+    border-radius: 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .canvas-toolbar {
-    bottom: 0.75rem;
-    padding: 0.3rem 0.45rem;
-    gap: 0.25rem;
+  #fireworks-canvas-section .canvas-toolbar {
+    bottom: 0.65rem;
+    width: calc(100% - 1.2rem);
+    max-width: 360px;
+    padding: 0.28rem 0.45rem;
+    gap: 0.22rem;
+    box-sizing: border-box;
+    justify-content: space-between;
   }
-  .canvas-btn {
-    padding: 0.25rem 0.45rem;
-    font-size: 0.68rem;
+  #fireworks-canvas-section .canvas-toolbar-group {
+    gap: 0.18rem;
   }
-  .toolbar-divider {
-    height: 14px;
+  #fireworks-canvas-section .canvas-btn {
+    padding: 0.24rem 0.4rem;
+    font-size: 0.66rem;
+  }
+  #fireworks-canvas-section .color-dot-picker {
+    gap: 0.18rem;
+  }
+  #fireworks-canvas-section .color-dot {
+    width: 12px;
+    height: 12px;
+  }
+  #fireworks-canvas-section .toolbar-divider {
+    height: 12px;
     margin: 0;
   }
   .sanctuary-stage {

@@ -454,10 +454,24 @@ function initInteractiveFireworks() {
     }
   }
 
+  // Helper to convert hex colors to rgba with custom opacity
+  function hexToRgba(hex, alpha = 1) {
+    if (!hex || typeof hex !== 'string') return `rgba(255, 184, 48, ${alpha})`;
+    let c = hex.replace('#', '');
+    if (c.length === 3) c = c.split('').map(x => x + x).join('');
+    const num = parseInt(c, 16);
+    if (isNaN(num)) return `rgba(255, 184, 48, ${alpha})`;
+    const r = (num >> 16) & 255;
+    const g = (num >> 8) & 255;
+    const b = num & 255;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
   class SkyLantern {
-    constructor(x, y) {
+    constructor(x, y, color) {
       this.x = x;
       this.y = y;
+      this.color = color || currentColor || '#ffb830';
       this.vy = -(Math.random() * 0.9 + 0.6);
       this.vx = (Math.random() - 0.5) * 0.4;
       this.swingPhase = Math.random() * Math.PI * 2;
@@ -480,41 +494,52 @@ function initInteractiveFireworks() {
       ctx.save();
       ctx.globalAlpha = Math.max(0, this.alpha);
 
-      // Warm glow
-      const grad = ctx.createRadialGradient(this.x, this.y, 2, this.x, this.y, this.size * 2);
-      grad.addColorStop(0, 'rgba(255, 235, 160, 0.9)');
-      grad.addColorStop(0.4, 'rgba(255, 140, 40, 0.4)');
-      grad.addColorStop(1, 'rgba(255, 100, 20, 0)');
+      // Radial outer aura in the lantern's specific color
+      const grad = ctx.createRadialGradient(this.x, this.y, 2, this.x, this.y, this.size * 2.3);
+      grad.addColorStop(0, hexToRgba(this.color, 0.95));
+      grad.addColorStop(0.35, hexToRgba(this.color, 0.5));
+      grad.addColorStop(0.7, hexToRgba(this.color, 0.15));
+      grad.addColorStop(1, hexToRgba(this.color, 0));
 
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.size * 2.3, 0, Math.PI * 2);
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Lantern body (rounded lantern silhouette)
-      ctx.fillStyle = 'rgba(255, 200, 110, 0.85)';
+      // Translucent rice-paper lantern body tinted with the selected color
+      ctx.fillStyle = hexToRgba(this.color, 0.88);
       ctx.beginPath();
       ctx.roundRect(this.x - this.size * 0.5, this.y - this.size * 0.7, this.size, this.size * 1.3, 4);
       ctx.fill();
 
-      // Flame core
+      // Subtle bamboo rim outline
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Hot white/golden flame core
       ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 10;
       ctx.beginPath();
-      ctx.arc(this.x, this.y + this.size * 0.35, 3, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y + this.size * 0.35, 2.5, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
     }
   }
 
-  function launchFirework(x, y) {
-    if (currentType === 'lantern') {
-      lanterns.push(new SkyLantern(x, canvas.height - 20));
+  function launchFirework(x, y, customColor, customType) {
+    const type = customType || currentType;
+    const col = customColor || currentColor;
+
+    if (type === 'lantern') {
+      lanterns.push(new SkyLantern(x, canvas.height - 20, col));
       playTempleBellNote(880);
     } else {
       const targetY = y || (canvas.height * (Math.random() * 0.4 + 0.15));
       const startX = x || (canvas.width * (Math.random() * 0.8 + 0.1));
-      rockets.push(new Rocket(startX, canvas.height - 10, targetY, currentColor, currentType));
+      rockets.push(new Rocket(startX, canvas.height - 10, targetY, col, type));
     }
   }
 
@@ -575,11 +600,26 @@ function initInteractiveFireworks() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = 'source-over';
 
-    // Auto Barrage
-    if (isAutoBarrage && Math.random() < 0.04) {
-      const rx = Math.random() * (canvas.width - 100) + 50;
-      const ry = Math.random() * (canvas.height * 0.4) + 60;
-      launchFirework(rx, ry);
+    // Auto Barrage (Grand Finale) - Vibrant Multicolor Symphony of Fireworks & Sky Lanterns
+    if (isAutoBarrage) {
+      if (Math.random() < 0.08) {
+        const festivePalette = [
+          '#ffb830', // Imperial Gold
+          '#ff6b35', // Diya Amber
+          '#b794f6', // Monastery Violet
+          '#10b981', // Himalayan Emerald
+          '#ff3366', // Festive Ruby
+          '#38bdf8', // Himalayan Cyan
+          '#fbbf24', // Marigold Yellow
+          '#ec4899'  // Lotus Rose
+        ];
+        const randomColor = festivePalette[Math.floor(Math.random() * festivePalette.length)];
+        const types = ['willow', 'peony', 'peony', 'lantern'];
+        const randomType = types[Math.floor(Math.random() * types.length)];
+        const rx = Math.random() * (canvas.width - 120) + 60;
+        const ry = Math.random() * (canvas.height * 0.42) + 50;
+        launchFirework(rx, ry, randomColor, randomType);
+      }
     }
 
     // Update rockets
